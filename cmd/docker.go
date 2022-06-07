@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,36 +16,34 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
+	"cli/services"
 	"github.com/spf13/cobra"
 )
 
-// cfgCmd represents the cfg command
-var cfgCmd = &cobra.Command{
-	Use:   "cfg",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+// dockerCmd represents the docker command
+var dockerCmd = &cobra.Command{
+	Use:   "docker",
+	Short: "Crea un archivo docker",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("cfg called")
+		if args[0] == "go" {
+			services.VarSrv.DockerGo()
+		} else if args[0] == "php" {
+			services.VarSrv.DockerPhp()
+		}
 	},
 }
 
 func init() {
-	mkCmd.AddCommand(cfgCmd)
+	mkCmd.AddCommand(dockerCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// cfgCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// dockerCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// cfgCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// dockerCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

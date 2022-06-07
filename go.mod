@@ -3,6 +3,7 @@ module cli
 go 1.18
 
 require (
+	github.com/culturadevops/jgt/jio v0.0.0-20220320211744-79d869368593
 	github.com/mitchellh/go-homedir v1.1.0
 	github.com/spf13/cobra v1.4.0
 	github.com/spf13/viper v1.12.0

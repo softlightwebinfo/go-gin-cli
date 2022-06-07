@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -24,19 +24,17 @@ import (
 // mkCmd represents the mk command
 var mkCmd = &cobra.Command{
 	Use:   "mk",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "Crea un archivo [cfg][lib][docker][ctl][mid][mdl][rts]",
+	Long:  ``,
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("mk called")
+		fmt.Println("mk  called")
+
 	},
 }
 
 func init() {
+
 	rootCmd.AddCommand(mkCmd)
 
 	// Here you will define your flags and configuration settings.

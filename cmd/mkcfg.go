@@ -20,26 +20,31 @@ import (
 	"github.com/spf13/cobra"
 )
 
-// libCmd represents the lib command
-var libCmd = &cobra.Command{
-	Use:   "lib",
-	Short: "Crea im archivo en libs ",
-	Long:  ``,
+// cfgCmd represents the cfg command
+var cfgCmd = &cobra.Command{
+	Use:   "cfg [mysql] o [yml]",
+	Short: "Crea config como mysql y yml ",
+	Long: `crea archivos dentro de la carpeta config puedes escoger
+	entre mysql y yml`,
 	Run: func(cmd *cobra.Command, args []string) {
-		services.VarSrv.CreateLibDefault(args[0])
+		if args[0] == "mysql" {
+			services.VarSrv.CreateConfigMysqlToml()
+		} else if args[0] == "yml" {
+			services.VarSrv.CreateConfigYml(args[1])
+		}
 	},
 }
 
 func init() {
-	mkCmd.AddCommand(libCmd)
+	mkCmd.AddCommand(cfgCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// libCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// cfgCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// libCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// cfgCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

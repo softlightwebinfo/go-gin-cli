@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,27 +16,28 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
+	"cli/services"
 	"github.com/spf13/cobra"
 )
 
 // ctlCmd represents the ctl command
 var ctlCmd = &cobra.Command{
 	Use:   "ctl",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Crea un archivo controllers usa -c para crear el crud",
+	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("ctl called")
+		if flags, _ := cmd.Flags().GetBool("crud"); flags {
+			services.VarSrv.CreateCtlCrud(args[0])
+		} else {
+			services.VarSrv.CreateCtlDefault(args[0])
+		}
+
 	},
 }
 
 func init() {
+	ctlCmd.Flags().BoolP("crud", "c", false, "Crea una plantilla crud")
+
 	mkCmd.AddCommand(ctlCmd)
 
 	// Here you will define your flags and configuration settings.

@@ -17,29 +17,33 @@ package cmd
 
 import (
 	"cli/services"
+	"fmt"
 	"github.com/spf13/cobra"
 )
 
-// libCmd represents the lib command
-var libCmd = &cobra.Command{
-	Use:   "lib",
-	Short: "Crea im archivo en libs ",
+// mkCmd represents the mk command
+var initconfigCmd = &cobra.Command{
+	Use:   "config",
+	Short: "Crea un archivo echomysql,echopostgre",
 	Long:  ``,
+
 	Run: func(cmd *cobra.Command, args []string) {
-		services.VarSrv.CreateLibDefault(args[0])
+		fmt.Println("init congif  called")
+		services.VarSrv.CopyInitConfig(args[0])
 	},
 }
 
 func init() {
-	mkCmd.AddCommand(libCmd)
+
+	rootCmd.AddCommand(initconfigCmd)
 
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command
 	// and all subcommands, e.g.:
-	// libCmd.PersistentFlags().String("foo", "", "A help for foo")
+	// mkCmd.PersistentFlags().String("foo", "", "A help for foo")
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// libCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	// mkCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

@@ -1,5 +1,5 @@
 /*
-Copyright © 2022 NAME HERE <EMAIL ADDRESS>
+Copyright © 2020 NAME HERE <EMAIL ADDRESS>
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -16,32 +16,30 @@ limitations under the License.
 package cmd
 
 import (
-	"fmt"
-
+	"cli/services"
 	"github.com/spf13/cobra"
 )
 
 // mdlCmd represents the mdl command
 var mdlCmd = &cobra.Command{
 	Use:   "mdl",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
-
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+	Short: "Crea archivos de modelos",
+	Long:  ``,
+	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if flags, _ := cmd.Flags().GetBool("crud"); flags {
-			fmt.Println("Flag crud")
+			services.VarSrv.CreateMdlCrud(args[0])
+		} else {
+			services.VarSrv.CreateMdlDefault(args[0])
 		}
-		fmt.Println("mdl called")
 	},
 }
 
 func init() {
-	mdlCmd.Flags().BoolP("crud", "c", false, "Crea una plantilla crud")
+
+	mdlCmd.Flags().BoolP("crud", "c", false, "crea una plantilla crud")
 	mkCmd.AddCommand(mdlCmd)
+
 	// Here you will define your flags and configuration settings.
 
 	// Cobra supports Persistent Flags which will work for this command

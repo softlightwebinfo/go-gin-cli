@@ -25,7 +25,11 @@ func (r *file) CreateFile(file string) *file {
 	return r
 }
 
+func (r *file) SaveFile(file, data string) *file {
+	os.WriteFile(file, []byte(data), os.ModePerm)
+	return r
+}
+
 func (r *file) AppendTemplate(template string) {
-	fmt.Println(template)
-	fmt.Println(fmt.Sprintf("%v", r))
+	r.SaveFile(r.file, template)
 }

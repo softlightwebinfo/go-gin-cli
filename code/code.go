@@ -14,3 +14,6 @@ const (
 	FILE_GO_MOD      = "go.mod"
 	FILE_ROOT        = "main.go"
 )
+const (
+	TEMPLATE_ENV = "config/env.txt"
+)

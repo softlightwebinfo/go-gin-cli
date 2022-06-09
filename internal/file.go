@@ -24,3 +24,8 @@ func (r *file) CreateFile(file string) *file {
 	r.file = file
 	return r
 }
+
+func (r *file) AppendTemplate(template string) {
+	fmt.Println(template)
+	fmt.Println(fmt.Sprintf("%v", r))
+}

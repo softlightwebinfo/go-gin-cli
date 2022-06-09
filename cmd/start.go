@@ -35,7 +35,7 @@ func ProcessCreate(args []string) {
 		CreateDir(code.DIR_REPOSITORY)
 
 	directoryRoot.CreateFile(code.FILE_ROOT)
-	directoryRoot.CreateFile(code.FILE_ENV)
+	directoryRoot.CreateFile(code.FILE_ENV).AppendTemplate(internal.NewTemplate().Env())
 	directoryRoot.CreateFile(code.FILE_ENV_EXAMPLE)
 	directoryRoot.CreateFile(code.FILE_GIT_IGNORE)
 	directoryRoot.CreateFile(code.FILE_GO_MOD)

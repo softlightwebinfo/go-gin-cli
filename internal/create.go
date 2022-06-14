@@ -22,6 +22,11 @@ func (r *internal) DirectoryRoot(directory string) *internal {
 	return NewDirectoryRoot(directory)
 }
 
+func (r *internal) EntryDirectory(directory string) *internal {
+	r.directory = fmt.Sprintf("%s/%s", *r.directoryRoot, directory)
+	return NewDirectoryRoot(r.directory)
+}
+
 func (r *internal) GetFile(file string) string {
 	return fmt.Sprintf("%s/%s", *r.directoryRoot, file)
 }

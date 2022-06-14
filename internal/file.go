@@ -24,3 +24,12 @@ func (r *file) CreateFile(file string) *file {
 	r.file = file
 	return r
 }
+
+func (r *file) SaveFile(file, data string) *file {
+	os.WriteFile(file, []byte(data), os.ModePerm)
+	return r
+}
+
+func (r *file) AppendTemplate(template string) {
+	r.SaveFile(r.file, template)
+}

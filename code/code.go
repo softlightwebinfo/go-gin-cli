@@ -8,6 +8,7 @@ const (
 	DIR_MIDDLEWARE = "middleware"
 	DIR_ROUTER     = "router"
 	DIR_STATIC     = "static"
+	DIR_LIBRARIES  = "library"
 )
 
 const (
@@ -34,6 +35,10 @@ const (
 
 const (
 	FILE_ROUTER = "router.go"
+)
+
+const (
+	FILE_LIBRARY = "library.go"
 )
 
 const (

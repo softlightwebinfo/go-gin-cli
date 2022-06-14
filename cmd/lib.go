@@ -16,7 +16,13 @@ limitations under the License.
 package cmd
 
 import (
+	"cli/code"
+	"cli/internal"
 	"fmt"
+	"regexp"
+	"strings"
+
+	template "cli/internal/template"
 
 	"github.com/spf13/cobra"
 )
@@ -24,7 +30,7 @@ import (
 // libCmd represents the lib command
 var libCmd = &cobra.Command{
 	Use:   "lib",
-	Short: "A brief description of your command",
+	Short: "Library functions",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -32,20 +38,29 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("lib called")
+		if len(args) == 0 {
+			return
+		}
+
+		nameLibrary := args[0]
+		var filenames []string
+
+		dirLibrary := internal.NewDirectoryRoot(code.DIR_LIBRARIES)
+		r, _ := regexp.Compile("(^[a-z]+[a-z])|([A-Z]+[a-z]*)")
+
+		for _, item := range r.FindAllStringSubmatch(nameLibrary, -1) {
+			name := item[0]
+			filenames = append(filenames, strings.ToLower(name))
+		}
+
+		dirLibrary.
+			CreateFile(fmt.Sprintf("%s.go", strings.Join(filenames, "_"))).
+			AppendTemplate(
+				template.NewTemplate().LibraryNew(nameLibrary),
+			)
 	},
 }
 
 func init() {
 	mkCmd.AddCommand(libCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// libCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// libCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

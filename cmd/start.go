@@ -3,6 +3,7 @@ package cmd
 import (
 	"cli/code"
 	"cli/internal"
+	template "cli/internal/template"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -30,15 +31,32 @@ func ProcessCreate(args []string) {
 
 	directoryRoot := internalRepo.DirectoryRoot(nameProject).
 		CreateDir(code.DIR_CONFIG).
+		CreateDir(code.DIR_MIDDLEWARE).
+		CreateDir(code.DIR_STATIC).
+		CreateDir(code.DIR_ROUTER).
 		CreateDir(code.DIR_MODELS).
 		CreateDir(code.DIR_MODULES).
 		CreateDir(code.DIR_REPOSITORY)
 
-	directoryRoot.CreateFile(code.FILE_ROOT)
-	directoryRoot.CreateFile(code.FILE_ENV).AppendTemplate(internal.NewTemplate().Env())
-	directoryRoot.CreateFile(code.FILE_ENV_EXAMPLE)
-	directoryRoot.CreateFile(code.FILE_GIT_IGNORE)
-	directoryRoot.CreateFile(code.FILE_GO_MOD)
+	directoryRoot.CreateFile(code.FILE_ROOT).AppendTemplate(template.NewTemplate().Main(nameProject))
+	directoryRoot.CreateFile(code.FILE_ENV).AppendTemplate(template.NewTemplate().Env())
+	directoryRoot.CreateFile(code.FILE_ENV_EXAMPLE).AppendTemplate(template.NewTemplate().EnvExample())
+	directoryRoot.CreateFile(code.FILE_GIT_IGNORE).AppendTemplate(template.NewTemplate().Gitignore())
+	directoryRoot.CreateFile(code.FILE_GO_MOD).AppendTemplate(template.NewTemplate().GoMod(nameProject))
+
+	entryDirectoryConfig := directoryRoot.EntryDirectory(code.DIR_CONFIG)
+	entryDirectoryConfig.CreateFile(code.FILE_CONFIG).AppendTemplate(template.NewTemplate().Config())
+	entryDirectoryConfig.CreateFile(code.FILE_CONFIG_DB).AppendTemplate(template.NewTemplate().ConfigDB())
+	entryDirectoryConfig.CreateFile(code.FILE_CONFIG_EMAIL).AppendTemplate(template.NewTemplate().ConfigEmail())
+
+	entryDirectoryStatic := directoryRoot.EntryDirectory(code.DIR_STATIC)
+	entryDirectoryStatic.CreateFile(code.FILE_STATIC).AppendTemplate(template.NewTemplate().Static())
+
+	entryDirectoryMiddleware := directoryRoot.EntryDirectory(code.DIR_MIDDLEWARE)
+	entryDirectoryMiddleware.CreateFile(code.FILE_MIDDLEWARE).AppendTemplate(template.NewTemplate().Middleware())
+
+	entryDirectoryRouter := directoryRoot.EntryDirectory(code.DIR_ROUTER)
+	entryDirectoryRouter.CreateFile(code.FILE_ROUTER).AppendTemplate(template.NewTemplate().Router())
 }
 
 func init() {

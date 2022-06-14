@@ -11,6 +11,7 @@ DB_USER=%s
 DB_PASS=%s
 DB_HOST=%s
 DB_PORT=%s
+ENVIRONMENT="development"
 `
 
 func Env(db, user, pass, host, port string) string {

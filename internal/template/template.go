@@ -30,3 +30,7 @@ func (r *template) GoMod(nameProject string) string {
 func (r *template) Main(appName string) string {
 	return config.Main(appName)
 }
+
+func (r *template) Makefile() string {
+	return config.Makefile()
+}

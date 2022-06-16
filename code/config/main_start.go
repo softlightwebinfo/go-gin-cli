@@ -9,22 +9,18 @@ const mainTest string = `
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	"log"
-	"net/smtp"
-	"os"
-	"strconv"
-	"time"
-	"github.com/gin-contrib/cors"
-	"github.com/gin-contrib/location"
-	"github.com/gin-gonic/gin"
-	"github.com/joho/godotenv"
-	_ "github.com/lib/pq"
 	"{appName}/middleware"
 	"{appName}/router"
 	"{appName}/static"
 	"{appName}/config"
+	"database/sql"
+	"fmt"
+	"log"
+	"os"
+	"strconv"
+	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 func goDotEnvVariable(key string) string {

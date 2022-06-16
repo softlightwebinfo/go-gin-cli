@@ -16,6 +16,9 @@ limitations under the License.
 package cmd
 
 import (
+	"cli/code"
+	"cli/internal"
+	template "cli/internal/template"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -24,7 +27,7 @@ import (
 // mkCmd represents the mk command
 var mkCmd = &cobra.Command{
 	Use:   "mk",
-	Short: "A brief description of your command",
+	Short: "Create makefile files",
 	Long: `A longer description that spans multiple lines and likely contains examples
 and usage of using your command. For example:
 
@@ -32,11 +35,19 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("mk called")
+		internalRepo := internal.New()
+
+		tog, _ := cmd.Flags().GetBool("makefile")
+
+		if tog {
+			internalRepo.DirectoryRoot(".").CreateFile(code.FILE_MAKE).AppendTemplate(template.NewTemplate().Makefile())
+			fmt.Println("mk created makefile")
+		}
 	},
 }
 
 func init() {
+	mkCmd.Flags().BoolP("makefile", "m", false, "Create makefile")
 	rootCmd.AddCommand(mkCmd)
 
 	// Here you will define your flags and configuration settings.
@@ -47,5 +58,4 @@ func init() {
 
 	// Cobra supports local flags which will only run when this command
 	// is called directly, e.g.:
-	// mkCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
 }

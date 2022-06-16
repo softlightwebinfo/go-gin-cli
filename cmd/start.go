@@ -26,6 +26,14 @@ func ProcessCreate(args []string) {
 	}
 
 	var nameProject = args[0]
+	generate(nameProject)
+}
+
+func init() {
+	rootCmd.AddCommand(startCmd)
+}
+
+func generate(nameProject string) {
 	internalRepo := internal.New()
 	internalRepo.CreateDir(nameProject)
 
@@ -36,6 +44,7 @@ func ProcessCreate(args []string) {
 		CreateDir(code.DIR_ROUTER).
 		CreateDir(code.DIR_MODELS).
 		CreateDir(code.DIR_MODULES).
+		CreateDir(code.DIR_LIBRARIES).
 		CreateDir(code.DIR_REPOSITORY)
 
 	directoryRoot.CreateFile(code.FILE_ROOT).AppendTemplate(template.NewTemplate().Main(nameProject))
@@ -43,6 +52,7 @@ func ProcessCreate(args []string) {
 	directoryRoot.CreateFile(code.FILE_ENV_EXAMPLE).AppendTemplate(template.NewTemplate().EnvExample())
 	directoryRoot.CreateFile(code.FILE_GIT_IGNORE).AppendTemplate(template.NewTemplate().Gitignore())
 	directoryRoot.CreateFile(code.FILE_GO_MOD).AppendTemplate(template.NewTemplate().GoMod(nameProject))
+	directoryRoot.CreateFile(code.FILE_MAKE).AppendTemplate(template.NewTemplate().Makefile())
 
 	entryDirectoryConfig := directoryRoot.EntryDirectory(code.DIR_CONFIG)
 	entryDirectoryConfig.CreateFile(code.FILE_CONFIG).AppendTemplate(template.NewTemplate().Config())
@@ -57,8 +67,7 @@ func ProcessCreate(args []string) {
 
 	entryDirectoryRouter := directoryRoot.EntryDirectory(code.DIR_ROUTER)
 	entryDirectoryRouter.CreateFile(code.FILE_ROUTER).AppendTemplate(template.NewTemplate().Router())
-}
 
-func init() {
-	rootCmd.AddCommand(startCmd)
+	entryDirectoryLibraries := directoryRoot.EntryDirectory(code.DIR_LIBRARIES)
+	entryDirectoryLibraries.CreateFile(code.FILE_LIBRARY).AppendTemplate(template.NewTemplate().Library())
 }

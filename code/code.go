@@ -8,6 +8,7 @@ const (
 	DIR_MIDDLEWARE = "middleware"
 	DIR_ROUTER     = "router"
 	DIR_STATIC     = "static"
+	DIR_LIBRARIES  = "library"
 )
 
 const (
@@ -16,6 +17,7 @@ const (
 	FILE_GIT_IGNORE  = ".gitignore"
 	FILE_GO_MOD      = "go.mod"
 	FILE_ROOT        = "main.go"
+	FILE_MAKE        = "makefile"
 )
 
 const (
@@ -34,6 +36,10 @@ const (
 
 const (
 	FILE_ROUTER = "router.go"
+)
+
+const (
+	FILE_LIBRARY = "library.go"
 )
 
 const (

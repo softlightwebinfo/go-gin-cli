@@ -16,6 +16,10 @@ limitations under the License.
 package cmd
 
 import (
+	"cli/code"
+	"cli/helpers"
+	"cli/internal"
+	template "cli/internal/template"
 	"fmt"
 
 	"github.com/spf13/cobra"
@@ -32,7 +36,19 @@ Cobra is a CLI library for Go that empowers applications.
 This application is a tool to generate the needed files
 to quickly create a Cobra application.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("mid called")
+		internalRepo := internal.New()
+
+		if len(args) == 0 {
+			fmt.Println("Ejemplo: cli mk mid cors")
+			return
+		}
+
+		internalRepo.
+			DirectoryRoot(code.DIR_MIDDLEWARE).
+			CreateFile(fmt.Sprintf("%s.go", helpers.FileName(args[0]))).
+			AppendTemplate(template.NewTemplate().MiddlewareEmpty(args[0]))
+
+		fmt.Println("middl created")
 	},
 }
 

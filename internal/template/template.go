@@ -42,3 +42,7 @@ func (r *template) ModuleRouter(name string) string {
 func (r *template) ModuleController(name string) string {
 	return config.ModuleController(name)
 }
+
+func (r *template) ModuleBaseRepository(name string) string {
+	return config.ModuleBaseRepository(name)
+}

@@ -17,6 +17,7 @@ const (
 	FILE_GIT_IGNORE  = ".gitignore"
 	FILE_GO_MOD      = "go.mod"
 	FILE_ROOT        = "main.go"
+	FILE_MAKE        = "makefile"
 )
 
 const (

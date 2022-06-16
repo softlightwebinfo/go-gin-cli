@@ -52,6 +52,7 @@ func generate(nameProject string) {
 	directoryRoot.CreateFile(code.FILE_ENV_EXAMPLE).AppendTemplate(template.NewTemplate().EnvExample())
 	directoryRoot.CreateFile(code.FILE_GIT_IGNORE).AppendTemplate(template.NewTemplate().Gitignore())
 	directoryRoot.CreateFile(code.FILE_GO_MOD).AppendTemplate(template.NewTemplate().GoMod(nameProject))
+	directoryRoot.CreateFile(code.FILE_MAKE).AppendTemplate(template.NewTemplate().Makefile())
 
 	entryDirectoryConfig := directoryRoot.EntryDirectory(code.DIR_CONFIG)
 	entryDirectoryConfig.CreateFile(code.FILE_CONFIG).AppendTemplate(template.NewTemplate().Config())

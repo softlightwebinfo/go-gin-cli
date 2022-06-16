@@ -9,37 +9,25 @@ const (
 	DIR_ROUTER     = "router"
 	DIR_STATIC     = "static"
 	DIR_LIBRARIES  = "library"
+	DIR_CONTROLLER = "controller"
+	DIR_MODEL      = "model"
 )
 
 const (
-	FILE_ENV         = ".env"
-	FILE_ENV_EXAMPLE = ".env.example"
-	FILE_GIT_IGNORE  = ".gitignore"
-	FILE_GO_MOD      = "go.mod"
-	FILE_ROOT        = "main.go"
-	FILE_MAKE        = "makefile"
-)
-
-const (
+	FILE_ENV          = ".env"
+	FILE_ENV_EXAMPLE  = ".env.example"
+	FILE_GIT_IGNORE   = ".gitignore"
+	FILE_GO_MOD       = "go.mod"
+	FILE_ROOT         = "main.go"
+	FILE_MAKE         = "makefile"
+	FILE_REPOSITORY   = "repository.go"
+	FILE_ROUTER       = "router.go"
+	FILE_LIBRARY      = "library.go"
+	FILE_MIDDLEWARE   = "middleware.go"
+	FILE_STATIC       = "static.go"
 	FILE_CONFIG_DB    = "db.go"
 	FILE_CONFIG       = "config.go"
 	FILE_CONFIG_EMAIL = "email.go"
-)
-
-const (
-	FILE_STATIC = "static.go"
-)
-
-const (
-	FILE_MIDDLEWARE = "middleware.go"
-)
-
-const (
-	FILE_ROUTER = "router.go"
-)
-
-const (
-	FILE_LIBRARY = "library.go"
 )
 
 const (

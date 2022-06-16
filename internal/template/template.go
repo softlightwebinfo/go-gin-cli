@@ -34,3 +34,11 @@ func (r *template) Main(appName string) string {
 func (r *template) Makefile() string {
 	return config.Makefile()
 }
+
+func (r *template) ModuleRouter(name string) string {
+	return config.ModuleRouter(name)
+}
+
+func (r *template) ModuleController(name string) string {
+	return config.ModuleController(name)
+}
